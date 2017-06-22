@@ -7,11 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to('<i class="fa fa-sign-out" aria-hidden="true"></i> Logout'.html_safe, destroy_user_session_path, :method => :delete, class: 'nav-link') %>
 
 <%= render partial: "layouts/flash_messages", flash: flash %>
 
 <%= yield %>
+
+  <nav class="main">
+    <ul>
+      <li><%= link_to 'Home', dashboard_path %></li>
+      <li><%= link_to 'New Placepot', new_league_path %></li>
+      <li><%= link_to 'Join Placepot', new_league_path %></li>
+      <% if current_user %>
+        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
+      <% else %>
+        <li><%= link_to 'Login', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </nav>
 
 </body>
 </html>

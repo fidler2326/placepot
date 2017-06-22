@@ -42,6 +42,6 @@ class LeaguesController < ApplicationController
 
   private
     def league_params
-      params.require(:league).permit(:meeting, :user_id)
+      params.require(:league).permit(:meeting, :join_code, :user_id)
     end
 end

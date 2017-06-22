@@ -9,6 +9,7 @@
 #  name       :text
 #  user_id    :integer
 #  meeting    :integer
+#  join_code  :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

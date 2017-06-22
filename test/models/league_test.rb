@@ -9,6 +9,7 @@
 #  name       :text
 #  user_id    :integer
 #  meeting    :integer
+#  join_code  :integer
 #
 
 require 'test_helper'

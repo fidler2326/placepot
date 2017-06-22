@@ -10,6 +10,7 @@
 #  meeting_id    :integer
 #  tip_id        :integer
 #  horse_options :boolean          default("{}"), is an Array
+#  result        :string
 #
 
 require 'test_helper'

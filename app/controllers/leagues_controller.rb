@@ -36,7 +36,8 @@ class LeaguesController < ApplicationController
     @league = League.where(join_code: code)
     respond_to do |format|
       unless @league.first.nil?
-        unless @league.first.users.find(current_user)
+        if current_user.leagues.where(join_code: code).first.nil?
+        # unless @league.first.users.find(current_user)
           # Add the current user to league
           @league.first.users << current_user
           format.html { redirect_to league_path(@league.first.id), notice: 'Joined league.' }

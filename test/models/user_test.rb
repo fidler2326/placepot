@@ -16,11 +16,13 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  league_id              :integer
+#  username               :string
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
 
 require 'test_helper'

@@ -1,0 +1,14 @@
+
+<%= form_for @tip do |f| %>
+  <% @meetings.each do |meeting| %>
+    <%= meeting.racecourse %><br />
+    <% meeting.races.each do |race| %>
+      <%= race.time %><br />
+      <% race.horses.each do |horse| %>
+        <label><%= horse.name.strip %></label>
+        <%= f.check_box :horse_ids, { multiple: true }, horse.id, false %><br />
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

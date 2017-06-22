@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="add-on">
+    <%= f.simple_fields_for :tips do |horse| %>
+      <div class="form-group">
+        <label></label>
+        <div class="input-group">
+          <%= f.text_field :tip, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

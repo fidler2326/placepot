@@ -21,7 +21,7 @@ namespace :racecards do
         horses = race.css('.RC-runnerRow')
         horses.each do |horse|
           name = horse.css('.RC-runnerName').text
-          Horse.create!(race_id: Race.last.id, name: name)
+          Horse.create!(race_id: Race.last.id, meeting_id: Meeting.last.id, name: name)
         end
       end
     end

@@ -1,6 +1,8 @@
 class MeetingsController < ApplicationController
   helper_method :get_meeting
 
+  # before_action :set_event, only: [:show, :edit, :update, :destroy, :like, :unlike]
+
   def get_meeting
     require 'open-uri'
     doc = Nokogiri::HTML(open("https://beta.racingpost.com/racecards/"))
@@ -29,6 +31,28 @@ class MeetingsController < ApplicationController
   end
 
   def index
+    @users = User.all
     @meetings = Meeting.all
+    # @posts = Horse.all.liked_by current_user
   end
+
+#   def like
+#   @horse.liked_by current_user
+#   respond_to do |format|
+#     format.html { redirect_to :back }
+#     format.js
+#     end
+#  end
+# def unlike
+#   @horse.unliked_by current_user
+#   respond_to do |format|
+#     format.html { redirect_to :back }
+#     format.js
+#     end
+#  end
+
+ # private
+ #  def set_event
+ #    @horse = Horse.find(params[:id])
+ #  end
 end

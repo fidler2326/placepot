@@ -1,9 +1,43 @@
+<%= @meetings.each do |meeting| %>
+<% end %>
+
+<% @users.each do |user| %>
+  <%= user.email %><br />
+
+    <% user.find_voted_items.group_by(&:meeting).each do |meetings| %>
+    <% meetings.each do |meeting| %>
+      <pre><strong>Meeting:</strong> <%= meeting.inspect %></pre>
+    <% end %>
+  <% end %>
+
+  <% user.find_voted_items.group_by(&:race).each do |race, horses| %>
+    <%= race.meeting.racecourse %>
+    <%= race.time %><br />
+    <% horses.each do |horse| %>
+      <%= horse.inspect %>
+      <%= horse.name %><br />
+    <% end %>
+  <% end %>
+
+<% end %>
+
 <% @meetings.each do |meeting| %>
   <h1><%= meeting.racecourse %></h1>
   <% meeting.races.each do |race| %>
     <h4 style="margin-bottom: 0;"><strong><%= race.time.to_s(:time) %></strong></h4>
     <% race.horses.each do |horse| %>
-      <p style="margin: 0;"><%= horse.name %></p>
+      <% if current_user.liked? horse %>
+      <%= link_to horse.name, unlike_horse_path(horse.id), remote: true,
+      id: "like_#{horse.id}" %>
+      <% horse.votes_for.up.by_type(User).voters.each do |voter| %>
+        <%= voter.email %>
+      <% end %>
+      <br />
+      <% else %>
+      <%= link_to horse.name, like_horse_path(horse.id), remote: true,
+      id: "like_#{horse.id}" %><br />
+      <% end %>
+      <div class="likes" id="likes_<%= horse.id %>"> <%= display_likes horse %> </div>
     <% end %>
   <% end %>
 <% end %>

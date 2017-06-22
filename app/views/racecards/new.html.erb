@@ -1,0 +1,13 @@
+<%= simple_form_for @racecard do |f| %>
+  <% @meetings.each do |meeting| %>
+    <% meeting.races.each do |race| %>
+      <% race.horses.each do |horse| %>
+
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= f.collection_check_boxes(:selection, Horse.all, :id, :name) do |horse| %>
+    <%= horse.label { horse.check_box } %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

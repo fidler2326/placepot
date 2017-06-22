@@ -16,4 +16,5 @@ Rails.application.routes.draw do
       put "dislike", to: "tips#downvote"
     end
   end
+  get "/join" => "leagues#join"
 end

@@ -26,17 +26,26 @@ class LeaguesController < ApplicationController
     @meeting = Meeting.where(id: @league.meeting)
   end
 
-  def edit
-    @league = League.find(params[:id])
+  def join
+    # TODO: Setting a random league to avoid error (probably a better way round this)
+    @league = League.last
   end
 
   def update
-    @league = League.find(params[:id])
-    @league.users << current_user
-    if @league.update(league_params)
-      redirect_to action: "index"
-    else
-      render 'edit'
+    code = params[:code]
+    @league = League.where(join_code: code)
+    respond_to do |format|
+      unless @league.first.nil?
+        unless @league.first.users.find(current_user)
+          # Add the current user to league
+          @league.first.users << current_user
+          format.html { redirect_to league_path(@league.first.id), notice: 'Joined league.' }
+        else
+          format.html { redirect_to join_path, notice: 'You are already part of this league.' }
+        end
+      else
+        format.html { redirect_to join_path, notice: 'League code wrong.' }
+      end
     end
   end
 

@@ -17,4 +17,5 @@ Rails.application.routes.draw do
     end
   end
   get "/join" => "leagues#join"
+  get "/dashboard" => "dashboard#index"
 end

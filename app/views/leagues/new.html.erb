@@ -1,4 +1,4 @@
 <%= simple_form_for @league do |f| %>
-  <%= f.input :meeting, as: :select, collection: @todays_meetings.map(&:racecourse), include_blank: true %>
+  <%= f.input :meeting, as: :select, collection: @todays_meetings.select(&:racecourse), include_blank: true %>
   <%= f.button :submit %>
 <% end %>

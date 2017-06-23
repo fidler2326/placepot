@@ -19,12 +19,12 @@
         <%= link_to horse.name, unlike_horse_path(horse.id), remote: true,
         id: "like_#{horse.id}" %>
         <% horse.votes_for.up.by_type(User).voters.each do |voter| %>
-          <%= voter.username %>
+          <%= voter.username %> - <%= horse.result %> <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %>
         <% end %>
         <br />
         <% else %>
         <%= link_to horse.name, like_horse_path(horse.id), remote: true,
-        id: "like_#{horse.id}" %><br />
+        id: "like_#{horse.id}" %> - <%= horse.result %> <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %><br />
         <% end %>
         <!-- <div class="likes" id="likes_<%= horse.id %>"> <%= display_likes horse %> </div> -->
       <% end %>

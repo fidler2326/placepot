@@ -12,4 +12,5 @@
 class Race < ActiveRecord::Base
   belongs_to :meeting
   has_many :horses
+  accepts_nested_attributes_for :horses, reject_if: :all_blank, allow_destroy: true
 end

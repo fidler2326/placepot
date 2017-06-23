@@ -1,0 +1,14 @@
+<div class="nested-fields tab <% if f.index == 0 %>active<% end %>" id="tab-<%= f.index %>">
+  <div class="race">
+    <%= link_to_remove_association "X", f, class: 'btn-cross' %>
+    <%= f.input :time %>
+  </div>
+  <div class="tips">
+    <%= f.simple_fields_for :horses do |horse| %>
+      <%= render 'horse_fields', f: horse %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add Horse', f, :horses, class: 'btn-add' %>
+    </div>
+  </div>
+</div>

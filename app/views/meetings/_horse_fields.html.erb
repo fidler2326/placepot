@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <div class="add-on">
+    <%= f.input :name, label: false, placeholder: 'The winning horse' %>
+    <%= f.input :result, as: :select, label: 'result', collection: [ 'lost','placed','won' ] %>
+    <%= link_to_remove_association "X", f, class: 'btn-cross' %>
+  </div>
+</div>

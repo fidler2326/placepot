@@ -11,4 +11,5 @@
 
 class Meeting < ActiveRecord::Base
   has_many :races
+  accepts_nested_attributes_for :races, reject_if: :all_blank, allow_destroy: true
 end

@@ -1,0 +1,33 @@
+<div class="in">
+  <%= simple_form_for @meeting do |f| %>
+    <div class="page-title">
+      <h1>
+        <%= current_meeting.first.racecourse %>
+        <small><%= current_meeting.first.created_at %></small>
+      </h1>
+    </div>
+
+    <section>
+      <ul class="tabs">
+        <% current_meeting.first.races.each.with_index do |race, index| %>
+          <li><a href="#tab-<%= index %>" class="<%= "active" if index == 0 %>"><%= race.time.to_s(:time) %></a></li>
+        <% end %>
+      </ul>
+
+      <div class="well">
+        <div id="races">
+          <table class="basic">
+            <%= f.simple_fields_for :races do |tip| %>
+              <%= render 'race_fields', f: tip %>
+            <% end %>
+          </table>
+        </div>
+
+        <div class="links">
+          <%= link_to_add_association 'Add Race', f, :races, class: 'btn-add' %>
+        </div>
+        <%= f.submit class: 'btn-fixed-bottom' %>
+      </div>
+    </section>
+  <% end %>
+</div>

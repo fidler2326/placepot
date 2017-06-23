@@ -17,4 +17,16 @@ class Horse < ActiveRecord::Base
   belongs_to :meeting
   belongs_to :race
   acts_as_votable
+
+  def points(result)
+    case result
+      when 'won'
+        points = 3
+      when 'placed'
+        points = 2
+      when 'lost'
+        points = 1
+    end
+    return points
+  end
 end

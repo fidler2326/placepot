@@ -1,4 +1,16 @@
 class ApplicationController < ActionController::Base
+
+  helper_method :current_league
+  helper_method :current_meeting
+
+  def current_league
+    current_user.leagues.where("leagues.created_at >= ?", Time.zone.now.beginning_of_day)
+  end
+
+  def current_meeting
+    Meeting.where(id: current_league.first.meeting) rescue nil
+  end
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -12,5 +24,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
-  
+
 end

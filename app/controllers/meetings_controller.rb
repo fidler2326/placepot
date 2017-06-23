@@ -32,4 +32,23 @@ class MeetingsController < ApplicationController
     @users = User.all
     @meetings = Meeting.all
   end
+
+  def edit
+    @meeting = Meeting.find(params[:id])
+  end
+
+  def update
+    @meeting = Meeting.find(params[:id])
+
+    if @meeting.update(meeting_params)
+      redirect_to action: "index"
+    else
+      render 'edit'
+    end
+  end
+
+  private
+    def meeting_params
+      params.require(:meeting).permit(:racecourse, :meeting_date, races_attributes: [:id, :race_time, :_destroy, horses_attributes: [:id, :horse, :ew, :result, :_destroy]])
+    end
 end

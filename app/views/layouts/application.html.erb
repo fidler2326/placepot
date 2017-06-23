@@ -10,20 +10,26 @@
 
 <%= render partial: "layouts/flash_messages", flash: flash %>
 
+<% if current_user %>
+  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
+<% else %>
+  <li><%= link_to 'Login', new_user_session_path %></li>
+<% end %>
+
 <%= yield %>
 
+<% if current_user %>
   <nav class="main">
     <ul>
-      <li><%= link_to 'Home', dashboard_path %></li>
-      <li><%= link_to 'New Placepot', new_league_path %></li>
-      <li><%= link_to 'Join Placepot', new_league_path %></li>
-      <% if current_user %>
-        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
-      <% else %>
-        <li><%= link_to 'Login', new_user_session_path %></li>
-      <% end %>
+      <li><%= link_to 'Placepot', dashboard_path %></li>
+      <li><a href="">League Table</a></li>
+      <li><%= link_to 'Results', edit_meeting_path(current_meeting.first.id) %></li>
+      <li><a href="">Results</a></li>
+      <li><%= link_to 'Create Placepot', new_league_path %></li>
+      <li><%= link_to 'Join Placepot', join_path %></li>
     </ul>
   </nav>
+<% end %>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%= @tip.created_at.strftime("%d/%m/%Y") %><br />
 
+<%= @tip.league_id %>
+
 <% @tip.horses.each do |horse| %>
   <%= horse.race.meeting.racecourse.strip %><br />
   <span class=""><%= horse.race.time.to_s(:time) %></span> - <span class=""><%= horse.name.strip %></span><br />

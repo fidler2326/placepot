@@ -1,6 +1,6 @@
 
 <%= form_for @tip do |f| %>
-  <% @meetings.each do |meeting| %>
+  <% current_meeting.each do |meeting| %>
     <%= meeting.racecourse %><br />
     <% meeting.races.each do |race| %>
       <%= race.time %><br />

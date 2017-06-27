@@ -10,6 +10,8 @@
 #  horse_id      :integer
 #  horse_options :boolean          default("{}"), is an Array
 #  horses        :text
+#  user_id       :integer
+#  league_id     :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

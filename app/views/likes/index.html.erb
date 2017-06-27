@@ -1,28 +1,10 @@
-<% unless current_meeting.nil? %>
-  <h2>League Join Code</h2>
-  <%= current_league.first.join_code %>
-<% end %>
 
-<% unless current_meeting.nil? %>
-  <h2>League table</h2>
-  <% current_league.first.memberships.each do |member| %>
-    <% user_results = member.user.horses.map(&:result) %>
-    <%= member.user.email %> <%= member.user.total_points(user_results) %><br />
-  <% end %>
-
-  <h2>My selections</h2>
-  <% current_user.horses.each do |horse| %>
-    <%= horse.race.time.to_s(:time) %>
-    <%= horse.name %> <span style="color: red;"><%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span><br />
-  <% end %>
-
-  <h2>New</h2>
   <% current_meeting.each do |meeting| %>
     <%= meeting.racecourse %><br />
     <% meeting.races.each do |race| %>
       <%= race.time %><br />
       <% race.horses.each do |horse| %>
-        <% unless current_user.horses.include?(horse) %>
+        <% unless @user.horses.include?(horse) %>
           <!-- # Prob want to move this into a User instance method -->
           <!-- # Create a like form if the user does not have a like for this horse -->
           <%= form_tag likes_path do %>
@@ -32,19 +14,13 @@
           <% end %>
         <% else %>
           <!-- # Find the like. I'll admit there is probably a better way to do this but it's getting past my bed time. -->
-          <% like = horse.likes.where(:user_id => current_user.id).first %>
+          <% like = horse.likes.where(:user_id => @user.id).first %>
           <!-- # Destroy the like associated with this horse and user -->
           <div class="unlike_button">
             <!-- # Clicking this sends a request to: DELETE /likes/123 -->
             <%= horse.name %> <%= link_to "destroy like", likes_path(like.id), :method => :delete %>
-            <% horse.likes.each do |like| %>
-              <%= like.user.email rescue nil %> <%= like.user.username rescue nil %>
-            <% end %>
           </div>
         <% end %>
-        <span style="color: red;"><%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
       <% end %>
     <% end %>
   <% end %>
-
-<% end %>

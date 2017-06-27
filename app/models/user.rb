@@ -35,12 +35,15 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
-  acts_as_voter
+  # acts_as_voter
   # belongs_to :league
   has_many :memberships
   has_many :leagues, :through => :memberships
   has_many :horses
   has_many :tips
+
+  has_many :likes
+  has_many :horses, through: :likes
 
   validates :username,
   :presence => true,
@@ -59,4 +62,20 @@ class User < ActiveRecord::Base
       where(conditions.to_h).first
     end
   end
+
+  def total_points(results)
+    total_points = 0
+    results.each do |result|
+      case result
+        when 'won'
+          total_points = total_points + 3
+        when 'placed'
+          total_points = total_points + 2
+        when 'lost'
+          total_points = total_points + 1
+      end
+    end
+    return total_points
+  end
+
 end

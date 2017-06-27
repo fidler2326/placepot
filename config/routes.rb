@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'leagues#index'
   resources :racecards
   resources :leagues
+  resources :likes
   resources :meetings
   resources :horses do
     member do

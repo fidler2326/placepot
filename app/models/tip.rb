@@ -10,6 +10,8 @@
 #  horse_id      :integer
 #  horse_options :boolean          default("{}"), is an Array
 #  horses        :text
+#  user_id       :integer
+#  league_id     :integer
 #
 
 class Tip < ActiveRecord::Base
@@ -18,4 +20,17 @@ class Tip < ActiveRecord::Base
   # serialize :horses, Hash
   # serialize :horses, Array
   # serialize :horses
+
+  def points(result)
+    case result
+      when 'won'
+        points = 3
+      when 'placed'
+        points = 2
+      when 'lost'
+        points = 1
+    end
+    return points
+  end
+
 end

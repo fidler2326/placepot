@@ -8,7 +8,7 @@ class TipsController < ApplicationController
   end
 
   def create
-    @tip = Tip.new(tips_params)
+    @tip = Tip.new(tips_params.merge({ user_id: current_user.id, league_id: current_league.first.meeting }))
 
     @tip.save
     redirect_to @tip
@@ -22,6 +22,10 @@ class TipsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def index
+    @tips = current_user.tips.where(league_id: current_league.first.meeting)
   end
 
   def show

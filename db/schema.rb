@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622222323) do
+ActiveRecord::Schema.define(version: 20170627203706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20170622222323) do
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "horse_id"
+    t.integer  "user_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -77,6 +79,8 @@ ActiveRecord::Schema.define(version: 20170622222323) do
     t.integer  "horse_id"
     t.boolean  "horse_options", default: [],              array: true
     t.text     "horses"
+    t.integer  "user_id"
+    t.integer  "league_id"
   end
 
   create_table "users", force: :cascade do |t|

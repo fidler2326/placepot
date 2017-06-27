@@ -1,0 +1,7 @@
+<%= current_meeting.first.racecourse %><br />
+
+<% @tips.each do |tip| %>
+  <% tip.horses.each do |horse| %>
+    <span class=""><%= horse.race.time.to_s(:time) %></span> - <span class=""><%= horse.name.strip %></span> <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %><br />
+  <% end %>
+<% end %>

@@ -16,7 +16,11 @@
 class Horse < ActiveRecord::Base
   belongs_to :meeting
   belongs_to :race
-  acts_as_votable
+
+  has_many :likes
+  has_many :users, through: :likes
+
+  # acts_as_votable
 
   def points(result)
     case result

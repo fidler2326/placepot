@@ -15,6 +15,7 @@ class LeaguesController < ApplicationController
         format.html { redirect_to leagues_path, notice: 'Client was successfully created.' }
         format.json { render action: 'show', status: :created, location: @league }
       else
+        p @league.errors
         format.html { render action: 'new' }
         format.json { render json: @league.errors, status: :unprocessable_entity }
       end

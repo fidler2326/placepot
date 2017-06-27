@@ -10,7 +10,6 @@
 #  user_id    :integer
 #  meeting    :integer
 #  join_code  :integer
-#  admin      :boolean          default("false")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

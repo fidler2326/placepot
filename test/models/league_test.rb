@@ -10,7 +10,6 @@
 #  user_id    :integer
 #  meeting    :integer
 #  join_code  :integer
-#  admin      :boolean          default("false")
 #
 
 require 'test_helper'

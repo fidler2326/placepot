@@ -20,15 +20,22 @@
   <% current_meeting.each do |meeting| %>
     <%= meeting.racecourse %><br />
     <% meeting.races.each do |race| %>
+      <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
       <%= race.time %><br />
       <% race.horses.each do |horse| %>
+        <!-- if current_user has a horse with race.id that matches the current race.id in loop -->
+
+        <%# horse.likes.where(user: current_user).inspect %>
         <% unless current_user.horses.include?(horse) %>
           <!-- # Prob want to move this into a User instance method -->
           <!-- # Create a like form if the user does not have a like for this horse -->
           <%= form_tag likes_path do %>
             <%= hidden_field_tag 'horse_id', horse.id %>
             <!-- # Clicking this sends a request: POST /likes with params of: horse_id=123 -->
-            <%= horse.name %> <%= submit_tag "Like this horse", :class => "like_button" %>
+            <%= horse.name %>
+            <% unless has_horse %>
+              <%= submit_tag "Like this horse", :class => "like_button" %>
+            <% end %>
           <% end %>
         <% else %>
           <!-- # Find the like. I'll admit there is probably a better way to do this but it's getting past my bed time. -->
@@ -38,6 +45,7 @@
             <!-- # Clicking this sends a request to: DELETE /likes/123 -->
             <%= horse.name %> <%= link_to "destroy like", likes_path(like.id), :method => :delete %>
             <% horse.likes.each do |like| %>
+              <%# like.horse.race.id == race.id %>
               <%= like.user.email rescue nil %> <%= like.user.username rescue nil %>
             <% end %>
           </div>

@@ -12,7 +12,7 @@ class LeaguesController < ApplicationController
     @league.users << current_user
     respond_to do |format|
       if @league.save
-        format.html { redirect_to leagues_path, notice: 'Client was successfully created.' }
+        format.html { redirect_to leagues_path, notice: 'League was successfully created.' }
         format.json { render action: 'show', status: :created, location: @league }
       else
         p @league.errors

@@ -4,14 +4,14 @@
 <% end %>
 
 <% unless current_meeting.nil? %>
-  <h2>League table (TODO: get by league id)</h2>
-  <% current_league.first.memberships.sort_by{|i| i.user.total_points(i.user.horses.map(&:result))}.reverse.each do |member| %>
-    <% user_results = member.user.horses.map(&:result) %>
+  <h2>League table</h2>
+  <% current_league.first.memberships.sort_by{|i| i.user.total_points(i.user.horses.where(meeting_id: current_league.first.meeting).map(&:result))}.reverse.each do |member| %>
+    <% user_results = member.user.horses.where(meeting_id: current_league.first.meeting).map(&:result) %>
     <%= member.user.email %> <%= member.user.total_points(user_results) %><br />
   <% end %>
 
-  <h2>My selections (TODO: get by league id)</h2>
-  <% current_user.horses.each do |horse| %>
+  <h2>My selections</h2>
+  <% current_user.horses.where(meeting_id: current_league.first.meeting).each do |horse| %>
     <%= horse.race.time.to_s(:time) %>
     <%= horse.name %> <span style="color: red;"><%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span><br />
   <% end %>

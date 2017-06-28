@@ -17,9 +17,9 @@ class League < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
 
-  before_save :join_code
+  before_save :create_join_code
 
-  def join_code
+  def create_join_code
     self.join_code = Random.new.bytes(6).bytes.join[0,6]
   end
 end

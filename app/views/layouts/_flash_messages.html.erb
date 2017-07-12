@@ -1,6 +1,10 @@
 <% flash.each do |type, message| %>
-  <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <span><%= message %></span>
-    <button class="close" data-dismiss="alert">×</button>
+  <div class="alert-container">
+    <div class="alert <%= bootstrap_class_for(type) %> active">
+      <div class="inner">
+        <span><%= message %></span>
+        <button class="js-alert-close">×</button>
+      </div>
+    </div>
   </div>
 <% end %>

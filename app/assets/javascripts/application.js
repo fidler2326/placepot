@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+
+$(document).ready(function(){
+  $('.js-alert-close').click(function(){
+    $('.alert').removeClass('active');
+    $('.alert').addClass('close');
+    return false;
+  });
+});

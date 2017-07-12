@@ -1,0 +1,50 @@
+/*doc
+---
+title: Alert
+name: Alert
+category: Basics
+---
+
+Button styles can be applied to any element. Typically you'll want
+to use either a `<button>` or an `<a>` element:
+
+```html_example
+<div class="alert-container">
+  <div class="alert">
+    <div class="inner">
+      <span>Example alert</span>
+      <button class="js-alert-close">x</button>
+    </div>
+  </div>
+</div>
+```
+*/
+
+.alert-container{ perspective: 800px; }
+
+.alert{
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  background-color: #fade3f;
+  position: fixed;
+  top: 0; left: 50%;
+  transform-style: preserve-3d;
+  transform-origin: top center;
+  transform: translateX(-50%);
+  &.active{ animation: alertIn 1s forwards; }
+  &.close{ animation: alertOut 1s forwards; }
+  .inner{ padding: 0 10px; }
+}
+
+@keyframes alertIn {
+  0%    { transform: translateX(-50%) rotateX(-90deg); }
+  25%   { transform: translateX(-50%) rotateX(-90deg); }
+  100%  { transform: translateX(-50%) rotateX(0deg);   }
+}
+
+@keyframes alertOut {
+  0%    { transform: translateX(-50%) rotateX(0deg);   }
+  75%   { transform: translateX(-50%) rotateX(-90deg); }
+  100%  { transform: translateX(-50%) rotateX(-90deg); }
+}

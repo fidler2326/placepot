@@ -4,9 +4,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use pg as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.20.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -50,3 +51,5 @@ gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'annotate'
 gem 'cocoon'
+# gem 'vivus'
+gem 'hologram'

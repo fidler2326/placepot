@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+h2{
+  margin: 0 0 20px 0;
+}
+
+p{
+  margin: 0 0 10px 0;
+  &:last-child{
+    margin: 0;
+  }
+  &.large{
+    font-size: 20px;
+  }
+}

@@ -9,25 +9,34 @@
 </head>
 <body>
   <%= render partial: "layouts/flash_messages", flash: flash %>
-  <div class="wrapper">
-    <% if current_user %>
-      <li><%= current_user.inspect %><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
-    <% else %>
-      <li><%= link_to 'Login', new_user_session_path %></li>
-    <% end %>
+  <header class="main">
+    <div class="container">
+      <a href="" class="logo">Placepot</a>
+      <ul>
+        <% if current_user %>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
+        <% else %>
+          <li><%= link_to 'Login', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </header>
 
+  <div class="wrapper">
     <%= yield %>
 
     <% if current_user %>
       <nav class="main">
-        <ul>
-          <li><%= link_to 'Placepot', dashboard_path %></li>
-          <% if current_meeting %>
-            <li><%= link_to 'Results', edit_meeting_path(current_meeting.first.id) %></li>
-          <% end %>
-          <li><%= link_to 'Create Placepot', new_league_path %></li>
-          <li><%= link_to 'Join Placepot', join_path %></li>
-        </ul>
+        <div class="container">
+          <ul>
+            <li><%= link_to 'Placepot', dashboard_path %></li>
+            <% if current_meeting %>
+              <li><%= link_to 'Results', edit_meeting_path(current_meeting.first.id) %></li>
+            <% end %>
+            <li><%= link_to 'Create Placepot', new_league_path %></li>
+            <li><%= link_to 'Join Placepot', join_path %></li>
+          </ul>
+        </div>
       </nav>
     <% end %>
   </div>

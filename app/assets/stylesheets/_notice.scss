@@ -1,0 +1,12 @@
+.notice{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 20px 0; padding: 10px;
+  background-color: #eee;
+  border: 1px dashed #ccc;
+  h2{
+    margin: 0 0 5px 0;
+  }
+}

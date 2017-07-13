@@ -17,9 +17,26 @@
 //= require_tree .
 
 $(document).ready(function(){
+
+  // Close alert
   $('.js-alert-close').click(function(){
     $('.alert').removeClass('active');
     $('.alert').addClass('close');
     return false;
   });
+
+  // Tabs
+  $('.switch a').click(function(){
+  	// Remove classes from perviously active tabs
+  	$('.tab').removeClass('active');
+  	$('.switch a').removeClass('selected');
+  	// Get active tab id
+  	var active = $(this).attr('href');
+  	// Display active tab
+  	$('div' + active).addClass('active');
+  	// Set current tab link to active
+  	$(this).addClass('selected');
+  	return false;
+  });
+
 });

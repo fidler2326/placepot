@@ -9,8 +9,11 @@
 #  name          :string
 #  meeting_id    :integer
 #  tip_id        :integer
-#  horse_options :boolean          default("{}"), is an Array
+#  horse_options :boolean          default([]), is an Array
 #  result        :string
+#  form          :string
+#  trainer       :string
+#  jockey        :string
 #
 
 class Horse < ActiveRecord::Base

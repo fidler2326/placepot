@@ -9,32 +9,35 @@
   <%= meeting.racecourse %><br />
   <% meeting.races.each do |race| %>
     <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
-    <%= race.time %><br />
-    <% race.horses.each do |horse| %>
+    <%= race.time.to_s(:time) %><br />
+    <% race.horses.each_with_index do |horse, i| %>
       <!-- if current_user has a horse with race.id that matches the current race.id in loop -->
 
       <%# horse.likes.where(user: current_user).inspect %>
       <% unless current_user.horses.include?(horse) %>
         <!-- # Prob want to move this into a User instance method -->
         <!-- # Create a like form if the user does not have a like for this horse -->
-        <%= form_tag likes_path do %>
-          <%= hidden_field_tag 'horse_id', horse.id %>
-          <!-- # Clicking this sends a request: POST /likes with params of: horse_id=123 -->
-          <%= horse.name %>
-          <% unless has_horse %>
-            <%= submit_tag "Like this horse", :class => "like_button" %>
+        <div class="horse-row">
+          <%= form_tag likes_path do %>
+            <%= hidden_field_tag 'horse_id', horse.id %>
+            <!-- # Clicking this sends a request: POST /likes with params of: horse_id=123 -->
+            <%= i +1 %> - <%= horse.name %><br />
+            Form: <%= horse.form %> T: <%= horse.trainer %> J: <%= horse.jockey %>
+            <% unless has_horse %>
+              <%= submit_tag "Like this horse", :class => "like_button" %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       <% else %>
         <!-- # Find the like. I'll admit there is probably a better way to do this but it's getting past my bed time. -->
         <% like = horse.likes.where(:user_id => current_user.id).first %>
         <!-- # Destroy the like associated with this horse and user -->
-        <div class="unlike_button">
+        <div class="unlike_button horse-row">
           <!-- # Clicking this sends a request to: DELETE /likes/123 -->
-          <%= horse.name %> <%= link_to "destroy like", likes_path(like.id), :method => :delete %>
+          <p><%= i +1 %> - <%= horse.name %> <%= link_to "destroy like", likes_path(like.id), :method => :delete %></p>
           <% horse.likes.each do |like| %>
             <%# like.horse.race.id == race.id %>
-            <%= like.user.email rescue nil %> <%= like.user.username rescue nil %>
+            <span class="label"><%= like.user.email rescue nil %></span> <span class="label"><%= like.user.username rescue nil %></span>
           <% end %>
         </div>
       <% end %>

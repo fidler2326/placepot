@@ -6,3 +6,7 @@ $green: #00af86;
   border-radius: 3px;
   color: #fff;
 }
+
+.label + .label{
+  margin: 0 0 0 5px;
+}

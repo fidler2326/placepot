@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  users      :integer          default("{}"), is an Array
+#  users      :integer          default([]), is an Array
 #  name       :text
 #  user_id    :integer
 #  meeting    :integer

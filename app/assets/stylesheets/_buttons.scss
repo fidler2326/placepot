@@ -5,6 +5,39 @@ name: Buttons
 category: Buttons
 ---
 ```html_example
-    <div class='alert'>Hello</div>
+    <a href="" class="button">I am a button</a>
 ```
 */
+
+$green: #00af86;
+$yellow: #fcce5e;
+
+.button{
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: $yellow;
+  border-radius: 25px;
+  font-size: 15px;
+  color: #494634;
+  text-decoration: none;
+  &:hover{
+    // TODO: Hover state
+  }
+  &.ghost{
+    background-color: initial;
+    border: 2px solid $green;
+    color: $green;
+    &:hover{
+      background-color: $green;
+      color: #fff;
+    }
+    &.white{
+      border-color: #fff;
+      color: #fff;
+      &:hover{
+        background-color: #fff;
+        color: $green;
+      }
+    }
+  }
+}

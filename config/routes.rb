@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'leagues#index'
+  root 'dashboard#index'
   resources :racecards
   resources :leagues
   resources :likes
@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   end
   resources :tips do
     member do
-      put "like", to: "tips#upvote"
-      put "dislike", to: "tips#downvote"
+      put 'like', to: 'tips#upvote'
+      put 'dislike', to: 'tips#downvote'
     end
   end
-  get "/join" => "leagues#join"
-  get "/dashboard" => "dashboard#index"
+  get '/join' => 'leagues#join'
+  get '/dashboard' => 'dashboard#index'
+
+  get '/get_meetings' => 'meetings#get_meetings', :as => 'get_meetings'
 end

@@ -11,12 +11,12 @@
   <%= render partial: "layouts/flash_messages", flash: flash %>
   <header class="main">
     <div class="container">
-      <a href="" class="logo">Placepot</a>
+      <%= link_to 'Placepot', root_path, class: 'logo' %>
       <ul>
         <% if current_user %>
-          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link', class: 'button ghost white') %></li>
         <% else %>
-          <li><%= link_to 'Login', new_user_session_path %></li>
+          <li><%= link_to 'Login', new_user_session_path, class: 'button ghost white' %></li>
         <% end %>
       </ul>
     </div>

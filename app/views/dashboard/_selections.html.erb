@@ -3,7 +3,7 @@
   <tr>
     <th>Time</th>
     <th>Horse</th>
-    <th>Result</th>
+    <th>Points</th>
   </tr>
   <% current_user.horses.where(meeting_id: current_league.first.meeting).each do |horse| %>
     <tr>

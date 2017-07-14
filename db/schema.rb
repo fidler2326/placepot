@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627203706) do
+ActiveRecord::Schema.define(version: 20170714185535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 20170627203706) do
     t.integer  "tip_id"
     t.boolean  "horse_options", default: [],              array: true
     t.string   "result"
+    t.string   "form"
+    t.string   "trainer"
+    t.string   "jockey"
   end
 
   create_table "leagues", force: :cascade do |t|

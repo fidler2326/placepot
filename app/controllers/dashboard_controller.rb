@@ -7,6 +7,6 @@ class DashboardController < ApplicationController
     # @selections = current_user.find_voted_items
     @user = current_user
     # Get users horses Results
-    @users_results = current_user.horses.map(&:result)
+    @users_results = current_user.horses.map(&:result) rescue nil
   end
 end

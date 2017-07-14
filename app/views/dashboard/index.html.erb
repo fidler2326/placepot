@@ -1,5 +1,13 @@
+<%= link_to 'Get Meetings', get_meetings_path %>
+
 <% if current_meeting.nil? %>
-  Not part of any placepots yet. <%= link_to 'Join Placepot', join_path %>
+  <div class="notice">
+    <p>Not part of any placepots yet. Create a placepot or join an existing one.</p>
+    <p>
+      <%= link_to 'Create Placepot', new_league_path, class: 'button ghost' %>
+      <%= link_to 'Join Placepot', join_path, class: 'button ghost' %>
+    </p>
+  </div>
 <% else %>
 
   <ul class="switch middle">
@@ -9,7 +17,9 @@
   </ul>
 
   <% unless current_meeting.nil? %>
-  
+
+    <p>Results last updated at: <%= current_meeting.first.updated_at.to_s(:time) rescue nil %></p>
+
     <!-- Picks -->
     <div class="tab active" id="pick">
       <%= render 'pick' %>

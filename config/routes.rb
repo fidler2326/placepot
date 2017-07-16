@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   get '/join' => 'leagues#join'
   get '/dashboard' => 'dashboard#index'
 
+  resources :admins, only: :index
   get '/get_meetings' => 'meetings#get_meetings', :as => 'get_meetings'
 end

@@ -17,6 +17,7 @@
 #  updated_at             :datetime         not null
 #  league_id              :integer
 #  username               :string
+#  admin                  :boolean
 #
 # Indexes
 #

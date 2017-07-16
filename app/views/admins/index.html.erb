@@ -1,0 +1,21 @@
+
+<%= link_to 'Get Meetings', get_meetings_path, class: 'button mb-20 middle' %>
+
+<table class="table-outlined">
+  <tr>
+    <th>Username</th>
+    <th>Email address</th>
+    <th>Leagues</th>
+    <th>Joined</th>
+    <th>Last login</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.leagues.count %></td>
+      <td><%= user.created_at.to_formatted_s(:long) %></td>
+      <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
+    </tr>
+  <% end %>
+</table>

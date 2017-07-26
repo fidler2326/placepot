@@ -1,0 +1,3 @@
+<% current_user.leagues.each do |league| %>
+  <%= link_to league.created_at, league_path(league) %><br />  
+<% end %>

@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require cocoon
 //= require_tree .
 
-$(document).ready(function(){
+$(document).on("ready page:load", function(){
 
   // Close alert
   $('.js-alert-close').click(function(){

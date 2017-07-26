@@ -17,8 +17,10 @@ class LikesController < ApplicationController
     horse = Horse.find(params[:horse_id])
     # Create a like
     Like.create(:horse => horse, :user => current_user)
+
     # redirect back to the Like index page and assign a flash
-    redirect_to dashboard_path, :notice => "You just liked the horse #{horse.name}"
+    # redirect_to dashboard_path, :notice => "You just liked the horse #{horse.name}"
+    render :index, layout: false
   end
 
   # here is where we will destroy a Like
@@ -28,6 +30,7 @@ class LikesController < ApplicationController
     like = Like.find(params[:id])
     # destroy it
     like.destroy
-    redirect_to dashboard_path, :notice => "You destroyed a like"
+    # redirect_to dashboard_path, :notice => "You destroyed a like"
+    render :index, layout: false
   end
 end

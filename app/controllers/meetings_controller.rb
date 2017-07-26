@@ -31,7 +31,7 @@ class MeetingsController < ApplicationController
         end
       end
     rescue => ex
-      
+
     end
     render 'dashboard/index'
   end

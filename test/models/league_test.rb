@@ -6,7 +6,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  users      :integer          default([]), is an Array
-#  name       :text
+#  name       :string
 #  user_id    :integer
 #  meeting    :integer
 #  join_code  :integer

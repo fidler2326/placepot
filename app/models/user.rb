@@ -68,11 +68,11 @@ class User < ActiveRecord::Base
     total_points = 0
     results.each do |result|
       case result
-        when 'won'
+        when '1st'
           total_points = total_points + 3
-        when 'placed'
+        when '2nd'
           total_points = total_points + 2
-        when 'lost'
+        when '3rd'
           total_points = total_points + 1
       end
     end

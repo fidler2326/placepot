@@ -23,11 +23,11 @@ class Tip < ActiveRecord::Base
 
   def points(result)
     case result
-      when 'won'
+      when '1st'
         points = 3
-      when 'placed'
+      when '2nd'
         points = 2
-      when 'lost'
+      when '3rd'
         points = 1
     end
     return points

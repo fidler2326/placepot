@@ -9,9 +9,10 @@
 <% else %>
 
   <ul class="switch middle">
-    <li><a href="#pick" class="selected">Placepot</a></li>
-    <li><a href="#selections">My Horses</a></li>
-    <li><a href="#league">League Table</a></li>
+    <li><a href="#pick" class="selected">Today</a></li>
+    <li><a href="#selections">My Picks</a></li>
+    <li><a href="#league">League</a></li>
+    <li><a href="#old">My Leagues</a></li>
   </ul>
 
   <% unless current_meeting.nil? %>
@@ -20,7 +21,9 @@
 
     <!-- Picks -->
     <div class="tab active" id="pick">
-      <%= render 'pick' %>
+      <div id="picks">
+        <%= render 'pick' %>
+      </div>
     </div>
 
     <!-- Selections -->
@@ -35,3 +38,16 @@
 
   <% end %>
 <% end %>
+
+<script>
+  $(document).on("submit", ".like-form", function(e) {
+    e.preventDefault();
+    var valuesToSubmit = $(this).serialize();
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('action'),
+      data: valuesToSubmit,
+      dataType: "script"
+    });
+  });
+</script>

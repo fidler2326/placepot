@@ -20,7 +20,10 @@ class LikesController < ApplicationController
 
     # redirect back to the Like index page and assign a flash
     # redirect_to dashboard_path, :notice => "You just liked the horse #{horse.name}"
-    render :index, layout: false
+    # render :index, layout: false
+    respond_to do |format|
+      format.js { render template: 'dashboard/index', content_type: 'text/javascript' }
+    end
   end
 
   # here is where we will destroy a Like
@@ -31,6 +34,9 @@ class LikesController < ApplicationController
     # destroy it
     like.destroy
     # redirect_to dashboard_path, :notice => "You destroyed a like"
-    render :index, layout: false
+    # render :index, layout: false
+    respond_to do |format|
+      format.js { render template: 'dashboard/index', content_type: 'text/javascript' }
+    end
   end
 end

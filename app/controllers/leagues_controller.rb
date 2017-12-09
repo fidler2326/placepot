@@ -7,6 +7,10 @@ class LeaguesController < ApplicationController
     @todays_meetings = Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
+  def index
+    @todays_meetings = Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day)
+  end
+
   def create
     @league = League.new(league_params)
     @league.users << current_user
@@ -25,6 +29,7 @@ class LeaguesController < ApplicationController
   def show
     @league = League.find(params[:id])
     @meeting = Meeting.where(id: @league.meeting)
+    @todays_meetings = Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
   def join

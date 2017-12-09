@@ -20,22 +20,23 @@ to use either a `<button>` or an `<a>` element:
 ```
 */
 
-.alert-container{ perspective: 800px; }
-
-.alert{
-  display: flex;
-  align-items: center;
-  width: 100%; min-height: 60px;
-  padding: 15px;
-  background-color: #fade3f;
-  position: fixed;
-  top: 0; left: 50%;
-  transform-style: preserve-3d;
-  transform-origin: top center;
-  transform: translateX(-50%);
-  &.active{ animation: alertIn 1s forwards; }
-  &.close{ animation: alertOut 1s forwards; }
-  .inner{ padding: 0 10px; }
+.alert-container{
+  perspective: 800px;
+  .alert{
+    display: flex;
+    align-items: center;
+    width: 100%; min-height: 60px;
+    padding: 15px;
+    background-color: #fade3f;
+    position: fixed;
+    top: 0; left: 50%;
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    transform: translateX(-50%);
+    &.active{ animation: alertIn 1s forwards; }
+    &.close{ animation: alertOut 1s forwards; }
+    .inner{ padding: 0 10px; }
+  }
 }
 
 @keyframes alertIn {

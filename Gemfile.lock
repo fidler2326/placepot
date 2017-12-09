@@ -1,3 +1,10 @@
+PATH
+  remote: ../hologram
+  specs:
+    hologram (1.4.0)
+      redcarpet (>= 2.2, < 4.0)
+      rouge (>= 1.5, != 1.9.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,11 +71,10 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    hologram (1.4.0)
-      redcarpet (>= 2.2, < 4.0)
-      rouge (>= 1.5)
     i18n (0.8.5)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -173,7 +179,8 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   devise
-  hologram
+  font-awesome-rails
+  hologram!
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.20.0)

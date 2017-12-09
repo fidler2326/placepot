@@ -1,10 +1,17 @@
-$green: #00af86;
+$green: #18C29C;
+$yellow: #fcce5e;
 
 .label{
   padding: 3px 5px;
-  background-color: $green;
+  background-color: #333;
   border-radius: 3px;
   color: #fff;
+  &.result-1st{
+    background-color: $green;
+  }
+  &.result-2nd,&.result-3rd{
+    background-color: $yellow;
+  }
 }
 
 .label + .label{

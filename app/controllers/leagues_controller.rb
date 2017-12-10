@@ -19,7 +19,6 @@ class LeaguesController < ApplicationController
         format.html { redirect_to leagues_path, notice: 'League was successfully created.' }
         format.json { render action: 'show', status: :created, location: @league }
       else
-        p @league.errors
         format.html { render action: 'new' }
         format.json { render json: @league.errors, status: :unprocessable_entity }
       end
@@ -57,6 +56,6 @@ class LeaguesController < ApplicationController
 
   private
     def league_params
-      params.require(:league).permit(:meeting, :join_code, :user_id)
+      params.require(:league).permit(:name, :meeting, :join_code, :user_id)
     end
 end

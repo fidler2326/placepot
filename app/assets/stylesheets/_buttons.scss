@@ -27,7 +27,7 @@ $yellow: #fcce5e;
   }
   &.ghost{
     background-color: initial;
-    border: 2px solid $green;
+    border: 2px olid $green;
     color: $green;
     &:hover{
       background-color: $green;
@@ -41,24 +41,5 @@ $yellow: #fcce5e;
         color: $green;
       }
     }
-  }
-}
-
-
-.btn-pick{
-  height: 100%;
-  padding: 0 10px;
-  position: absolute;
-  top: 0; right: 0;
-  background-color: #eee;
-  border: 0; outline: 0;
-  cursor: pointer;
-  i{
-    color: #333;
-    font-size: 32px;
-  }
-  &.selected{
-    background-color: $green;
-    i{ color: #fff; }
   }
 }

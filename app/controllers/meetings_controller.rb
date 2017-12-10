@@ -38,7 +38,7 @@ class MeetingsController < ApplicationController
 
   def index
     @users = User.all
-    @meetings = Meeting.all
+    @meetings = Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 
   def edit

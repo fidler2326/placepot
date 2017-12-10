@@ -1,0 +1,12 @@
+<table class="table-outlined">
+  <tr>
+    <th>League</th>
+    <th></th>
+  </tr>
+  <% current_user.leagues.each do |league| %>
+    <tr>
+      <td><%= league.name %></td>
+      <td class="text-right"><%= link_to "View League", league_path(league) %></td>
+    </tr>
+  <% end %>
+</table>

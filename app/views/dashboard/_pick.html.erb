@@ -6,57 +6,50 @@
 </div>
 
 <% current_meeting.each do |meeting| %>
-  <%= meeting.racecourse %><br />
+  <h2><%= meeting.racecourse %></h2>
   <% meeting.races.each do |race| %>
-    <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
-    <%= race.time.to_s(:time) %><br />
-    <% race.horses.each_with_index do |horse, i| %>
-      <% unless current_user.horses.include?(horse) %>
+    <div class="race-row">
+      <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
+      <div class="race-header"><%= race.time.to_s(:time) %></div>
+      <% race.horses.each_with_index do |horse, i| %>
         <div class="horse-row">
-          <%= form_tag likes_path, class: 'like-form' do %>
-            <p>
-              <%= i +1 %> - <%= horse.name %>
-              <% if horse.result.length > 0 %>
-                <span class="label result-<%= horse.result %>"><%= horse.result.capitalize %> - <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
-              <% end %>
-            </p>
-            Form: <%= horse.form %> T: <%= horse.trainer %> J: <%= horse.jockey %>
-            <% horse.likes.each do |like| %>
+          <div class="horse">
+            <div class="number"><%= i +1 %></div>
+            <div style="width: 100%;">
+              <p>
+                <%= horse.name %>
+                <% if horse.result %>
+                  <span class="label result-<%= horse.result %>"><%= horse.result.capitalize %> - <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
+                <% end %><br />
+                <%= "Form #{horse.form}" if horse.form %> <%= "T: #{horse.trainer}" if horse.trainer %> <%= "J: #{horse.jockey}" if horse.jockey %>
+              </p>
+              <%= "<span class='divide'></span>".html_safe if horse.likes.length > 0 %>
               <% horse.likes.each do |like| %>
                 <span class="label"><%= User.find(like.user_id).username rescue nil %></span>
               <% end %>
-            <% end %>
-            <% unless has_horse %>
-              <%= button_tag "", :class => "btn-pick", id: 'like' do %>
-                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="select">
+            <% unless current_user.horses.include?(horse) %>
+              <%= form_tag likes_path, class: 'like-form' do %>
+                <%= button_tag "", :class => "btn-pick", id: 'like', disabled: has_horse do %>
+                  <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                <% end %>
+                <%= hidden_field_tag 'horse_id', horse.id %>
+              <% end %>
+            <% else %>
+              <% like = horse.likes.where(:user_id => current_user.id).first %>
+              <%= form_tag like_path(like), class: 'like-form', method: :delete do %>
+                <%= button_tag "", class: "btn-pick selected", id: 'like' do %>
+                  <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                <% end %>
+                <%= hidden_field_tag 'horse_id', horse.id %>
               <% end %>
             <% end %>
-            <%= hidden_field_tag 'horse_id', horse.id %>
-          <% end %>
-        </div>
-      <% else %>
-        <% like = horse.likes.where(:user_id => current_user.id).first %>
-        <div class="unlike_button horse-row">
-          <%= form_tag like_path(like), class: 'like-form', method: :delete do %>
-            <p>
-              <%= i +1 %> - <%= horse.name %>
-              <% if horse.result.length > 0 %>
-                <span class="label result-<%= horse.result %>"><%= horse.result.capitalize %> - <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
-              <% end %>
-            </p>
-            <%= button_tag "", class: "btn-pick selected", id: 'like' do %>
-              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-            <% end %>
-            <% horse.likes.each do |like| %>
-              <% horse.likes.each do |like| %>
-                <span class="label"><%= User.find(like.user_id).username rescue nil %></span>
-              <% end %>
-            <% end %>
-            <%= hidden_field_tag 'horse_id', horse.id %>
-          <% end %>
+          </div>
         </div>
       <% end %>
-
-    <% end %>
+    </div>
   <% end %>
 <% end %>

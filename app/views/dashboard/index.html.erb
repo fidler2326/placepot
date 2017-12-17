@@ -7,7 +7,7 @@
 <% end %>
 
 <div class="well">
-  <% unless current_league.empty? %>
+  <% unless current_league.nil? %>
     <div class="page-heading">
       <h2>
         Today's Placepot
@@ -20,7 +20,7 @@
         <div class="inner">
           <i class="fa fa-eercast" aria-hidden="true"></i>
           <h3>Course</h3>
-          <p><%= Meeting.find(current_league.first.meeting).racecourse if current_league %></p>
+          <p><%= Meeting.find(current_league.first.meeting).racecourse %></p>
         </div>
       </div>
 

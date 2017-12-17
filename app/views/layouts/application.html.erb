@@ -32,7 +32,7 @@
 
         <li><%= link_to 'My Leagues', leagues_path %></li>
 
-        <% if current_user.admin %>
+        <% if current_user && current_user.admin %>
           <li><%= link_to 'Admin', admins_path %></li>
         <% end %>
 

@@ -31,9 +31,8 @@ ActiveRecord::Schema.define(version: 20171213192516) do
   end
 
   create_table "leagues", force: :cascade do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "users",      default: [],              array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "name"
     t.integer  "user_id"
     t.integer  "meeting"

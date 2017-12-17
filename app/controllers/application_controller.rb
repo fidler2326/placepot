@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_meeting
 
   def current_league
-    current_user.leagues.where("leagues.created_at >= ?", Time.zone.now.beginning_of_day)
+    current_user.leagues.where("leagues.created_at >= ?", Time.zone.now.beginning_of_day) if current_user
   end
 
   def current_meeting

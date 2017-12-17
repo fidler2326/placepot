@@ -1,3 +1,17 @@
+// Colours
+// -------
+
+$green: #18C29C;
+$yellow: #fcce5e;
+
+// Breakpoints
+// -----------
+
+$mobile: 680px;
+
+// Well
+// ----
+
 .well{
   display: flex;
   flex-direction: column;
@@ -5,4 +19,7 @@
   margin: 0; padding: 15px;
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.1),0 8px 16px rgba(0,0,0,0.05);
+  @media(max-width: $mobile){
+    padding: 8px;
+  }
 }

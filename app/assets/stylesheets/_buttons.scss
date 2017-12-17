@@ -9,17 +9,15 @@ category: Buttons
 ```
 */
 
-$green: #18C29C;
-$yellow: #fcce5e;
-
 .button{
   display: inline-block;
   padding: 8px 20px;
   background-color: $yellow;
   border: 0;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 15px;
   color: #494634;
+  font-size: 14px;
   text-decoration: none;
   cursor: pointer;
   &:hover{
@@ -41,5 +39,9 @@ $yellow: #fcce5e;
         color: $green;
       }
     }
+  }
+  &.button-full{
+    width: 100%;
+    text-align: center;
   }
 }

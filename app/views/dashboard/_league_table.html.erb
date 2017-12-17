@@ -1,4 +1,7 @@
-<h2>League table</h2>
+<div class="page-heading">
+  <h2>League table</h2>
+</div>
+
 <table class="table-outlined">
   <tr>
     <th>User</th>
@@ -7,8 +10,8 @@
   <% current_league.first.memberships.sort_by{|i| i.user.total_points(i.user.horses.where(meeting_id: current_league.first.meeting).map(&:result))}.reverse.each do |member| %>
     <tr>
       <% user_results = member.user.horses.where(meeting_id: current_league.first.meeting).map(&:result) %>
-      <td><%= member.user.email %></td>
-      <td><%= member.user.total_points(user_results) %></td>
+      <td><%= member.user.username %></td>
+      <td><%= pluralize(member.user.total_points(user_results), 'point') %></td>
     </tr>
   <% end %>
 </table>

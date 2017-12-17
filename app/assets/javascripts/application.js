@@ -38,4 +38,11 @@ $(document).on("ready page:load", function(){
   	return false;
   });
 
+  // Mobile menu trigger
+  // -------------------
+  $('.menu-trigger').click(function() {
+    $(this).toggleClass('active');
+    $('header ul').toggleClass('active');
+  });
+
 });

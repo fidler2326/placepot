@@ -1,48 +1,79 @@
-<% if current_meeting.nil? %>
-  <div class="notice">
-    <p>Not part of any placepots yet. Create a placepot or join an existing one.</p>
-    <p>
-      <%= link_to 'Create Placepot', new_league_path, class: 'button ghost' %>
-      <%= link_to 'Join Placepot', join_path, class: 'button ghost' %>
-    </p>
-  </div>
-<% else %>
-
+<% unless current_meeting.nil? %>
   <ul class="switch middle">
     <li><a href="#pick" class="selected">Today</a></li>
-    <li><a href="#selections">My Picks</a></li>
-    <li><a href="#league">League</a></li>
-    <li><a href="#old">My Leagues</a></li>
+    <li><a href="#selections" class="fetch" data-url="/dashboard/fetch_selections">My Picks</a></li>
+    <li><a href="#league" class="fetch" data-url="/dashboard/fetch_league">League</a></li>
   </ul>
+<% end %>
 
-  <% unless current_meeting.nil? %>
+<div class="well">
+  <% unless current_league.empty? %>
+    <div class="page-heading">
+      <h2>
+        Today's Placepot
+        <!-- <small>Steward: <%= User.find(current_league.first.steward).username %></small> -->
+      </h2>
+    </div>
 
-    <p>Results last updated at: <%= current_meeting.first.updated_at.to_s(:time) rescue nil %></p>
+    <div class="tile-container">
+      <div class="tile">
+        <div class="inner">
+          <i class="fa fa-eercast" aria-hidden="true"></i>
+          <h3>Course</h3>
+          <p><%= Meeting.find(current_league.first.meeting).racecourse if current_league %></p>
+        </div>
+      </div>
 
-    <!-- Picks -->
-    <div class="tab active" id="pick">
-      <div id="picks">
-        <%= render 'pick' %>
+      <div class="tile">
+        <div class="inner">
+          <i class="fa fa-eercast" aria-hidden="true"></i>
+          <h3>League</h3>
+          <p><%= current_league.first.name %></p>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="inner">
+          <i class="fa fa-eercast" aria-hidden="true"></i>
+          <h3>Join Code</h3>
+          <p><%= current_league.first.join_code %></p>
+        </div>
       </div>
     </div>
-
-    <!-- Selections -->
-    <div class="tab" id="selections">
-      <%= render 'selections' %>
-    </div>
-
-    <!-- League table -->
-    <div class="tab" id="league">
-      <%= render 'league_table' %>
-    </div>
-
-    <!-- Old Leagues -->
-    <div class="tab" id="old">
-      <%= render "my_leagues" %>
-    </div>
-
   <% end %>
-<% end %>
+
+  <% if current_meeting.nil? %>
+    <div class="notice">
+      <p>Not part of any placepots yet. Create a placepot or join an existing one.</p>
+      <p>
+        <%= link_to 'Create Placepot', new_league_path, class: 'button ghost' %>
+        <%= link_to 'Join Placepot', join_path, class: 'button ghost' %>
+      </p>
+    </div>
+  <% else %>
+
+    <% unless current_meeting.nil? %>
+
+      <!-- Picks -->
+      <div class="tab active" id="pick">
+        <div id="picks">
+          <%= render 'pick' %>
+        </div>
+      </div>
+
+      <!-- Selections -->
+      <div class="tab" id="selections">
+        <%= render 'selections' %>
+      </div>
+
+      <!-- League table -->
+      <div class="tab" id="league">
+        <%= render 'league_table' %>
+      </div>
+
+    <% end %>
+  <% end %>
+</div>
 
 <script>
   $(document).on("submit", ".like-form", function(e) {
@@ -54,5 +85,15 @@
       data: valuesToSubmit,
       dataType: "script"
     });
+  });
+
+  $(".fetch").click(function() {
+    $.ajax({
+      type: "GET",
+      url: $(this).data("url"),
+      // data: ,
+      dataType: "script"
+    });
+    return false;
   });
 </script>

@@ -1,9 +1,14 @@
 <div class="container small">
   <div class="well">
+    <div class="page-heading">
+      <h2>Create League</h2>
+    </div>
     <%= simple_form_for @league do |f| %>
       <%= f.input :name %>
-      <%= f.input :meeting, as: :select, collection: @todays_meetings, label_method: :racecourse, include_blank: true, label: false %>
-      <%= f.button :submit, class: 'button' %>
+      <%= f.input :meeting, as: :select, collection: @todays_meetings, label_method: :racecourse, include_blank: true, label: "Select Course" %>
+      <div class="form-actions">
+        <%= f.button :submit, class: 'button button-full' %>
+      </div>
     <% end %>
   </div>
 </div>

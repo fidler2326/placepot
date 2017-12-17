@@ -1,4 +1,16 @@
-<%= form_tag(@league, method: :patch, class: 'form-inline middle') do %>
-  <%= text_field_tag :code, nil, maxlength: 6 %>
-  <%= submit_tag 'Join League' %>
-<% end %>
+<div class="container small">
+  <div class="well">
+    <div class="page-heading">
+      <h2>Join League</h2>
+    </div>
+    <%= form_tag(@league, method: :patch) do %>
+      <div class="input">
+        <label>Enter your 6 digit join code</label>
+        <%= text_field_tag :code, nil, maxlength: 6 %>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag 'Join League', class: 'button button-full' %>
+      </div>
+    <% end %>
+  </div>
+</div>

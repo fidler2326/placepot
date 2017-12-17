@@ -1,3 +1,24 @@
-<% current_user.leagues.each do |league| %>
-  <%= link_to league.created_at, league_path(league) %><br />  
-<% end %>
+<div class="well">
+  <div class="page-heading">
+    <h2>My Leagues</h2>
+  </div>
+
+  <% unless current_user.leagues.empty? %>
+    <table class="table-outlined">
+      <tr>
+        <th>League</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+      <% current_user.leagues.each do |league| %>
+        <tr>
+          <td><%= league.name %></td>
+          <td><%= league.created_at.strftime("%d/%m/%Y") %></td>
+          <td class="text-right"><%= link_to "View League", league_path(league) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    No Leagues. <%= link_to "Join One!", join_path %>
+  <% end %>
+</div>

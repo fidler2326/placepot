@@ -1,23 +1,27 @@
 <!-- Join code -->
-<div class="notice">
+<!-- <div class="notice">
   <h2>League Join Code</h2>
   <p>Give this code to people you want to join your league.</p>
   <p class="large"><span class="label"><%= current_league.first.join_code %></span></p>
-</div>
+</div> -->
+
+<span class="label mar-bottom-10">Results last updated at: <%= current_meeting.first.updated_at.to_s(:time) rescue nil %></span>
 
 <% current_meeting.each do |meeting| %>
-  <h2><%= meeting.racecourse %></h2>
-  <% meeting.races.each do |race| %>
+  <% meeting.races.each_with_index do |race,i| %>
     <div class="race-row">
       <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
-      <div class="race-header"><%= race.time.to_s(:time) %></div>
+      <div class="race-header">
+        <h2 class="no-margin upcase">Race <%= i +1 %></h2>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= race.time.to_s(:time) %></p>
+      </div>
       <% race.horses.each_with_index do |horse, i| %>
         <div class="horse-row">
           <div class="horse">
             <div class="number"><%= i +1 %></div>
             <div style="width: 100%;">
               <p>
-                <%= horse.name %>
+                <span class="upcase"><%= horse.name %></span>
                 <% if horse.result %>
                   <span class="label result-<%= horse.result %>"><%= horse.result.capitalize %> - <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
                 <% end %><br />

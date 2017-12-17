@@ -1,21 +1,30 @@
+<div class="well">
 
-<%= link_to 'Get Meetings', get_meetings_path, class: 'button mb-20 middle' %>
+  <div class="page-heading">
+    <h2>Admin</h2>
+  </div>
 
-<table class="table-outlined">
-  <tr>
-    <th>Username</th>
-    <th>Email address</th>
-    <th>Leagues</th>
-    <th>Joined</th>
-    <th>Last login</th>
-  </tr>
-  <% @users.each do |user| %>
+  <div class="flex-row mar-bottom-20">
+    <%= link_to 'Get Meetings', get_meetings_path, class: 'button mar-right-5' %>
+    <%= link_to 'Reset Today', reset_meetings_path, class: 'button' %>
+  </div>
+
+  <table class="table-outlined">
     <tr>
-      <td><%= user.username %></td>
-      <td><%= user.email %></td>
-      <td><%= user.leagues.count %></td>
-      <td><%= user.created_at.to_formatted_s(:long) %></td>
-      <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
+      <th>Username</th>
+      <th>Email address</th>
+      <th>Leagues</th>
+      <th>Joined</th>
+      <th>Last login</th>
     </tr>
-  <% end %>
-</table>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.leagues.count %></td>
+        <td><%= user.created_at.to_formatted_s(:long) %></td>
+        <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

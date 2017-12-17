@@ -10,6 +10,7 @@
 #  user_id    :integer
 #  meeting    :integer
 #  join_code  :integer
+#  steward    :integer
 #
 
 require 'test_helper'

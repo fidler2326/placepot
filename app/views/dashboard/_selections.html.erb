@@ -1,14 +1,28 @@
-<h2>My selections</h2>
-<table class="table-outlined">
-  <tr>
-    <th>Time</th>
-    <th>Horse</th>
-    <th>Points</th>
-  </tr>
-  <% current_user.horses.where(meeting_id: current_league.first.meeting).each do |horse| %>
+<div class="page-heading">
+  <h2>My selections</h2>
+</div>
+
+<% unless current_user.horses.where(meeting_id: current_league.first.meeting).empty? %>
+  <table class="table-outlined">
     <tr>
-      <td><%= horse.race.time.to_s(:time) %></td>
-      <td><%= horse.name %></td>
-      <td><%= pluralize(horse.points(horse.result), 'point') %></td>
-  <% end %>
-</table>
+      <th>Time</th>
+      <th>Horse</th>
+      <th>Points</th>
+    </tr>
+    <% current_user.horses.where(meeting_id: current_league.first.meeting).order("horses").each do |horse| %>
+      <tr>
+        <td><%= horse.race.time.to_s(:time) %></td>
+        <td><%= horse.name %></td>
+        <td><%= pluralize(horse.points(horse.result), 'point') %></td>
+    <% end %>
+    <tr>
+      <td colspan="2" class="text-right">Total:</td>
+      <td>
+        <% user_results = current_user.horses.where(meeting_id: current_league.first.meeting).map(&:result) %>
+        <%= pluralize(current_user.total_points(user_results), 'point') %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <div class="notice no-margin">No selections.</div>
+<% end %>

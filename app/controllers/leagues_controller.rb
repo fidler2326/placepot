@@ -14,9 +14,10 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(league_params)
     @league.users << current_user
+    @league.steward = current_user.id
     respond_to do |format|
       if @league.save
-        format.html { redirect_to leagues_path, notice: 'League was successfully created.' }
+        format.html { redirect_to root_path, notice: 'League was successfully created.' }
         format.json { render action: 'show', status: :created, location: @league }
       else
         format.html { render action: 'new' }
@@ -44,7 +45,7 @@ class LeaguesController < ApplicationController
         if current_user.leagues.where(join_code: code).first.nil?
           # Add the current user to league
           @league.first.users << current_user
-          format.html { redirect_to league_path(@league.first.id), notice: 'Joined league.' }
+          format.html { redirect_to root_path, notice: 'Joined league.' }
         else
           format.html { redirect_to join_path, notice: 'You are already part of this league.' }
         end
@@ -56,6 +57,6 @@ class LeaguesController < ApplicationController
 
   private
     def league_params
-      params.require(:league).permit(:name, :meeting, :join_code, :user_id)
+      params.require(:league).permit(:name, :meeting, :join_code, :steward, :user_id)
     end
 end

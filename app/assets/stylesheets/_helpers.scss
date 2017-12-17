@@ -1,5 +1,16 @@
-.no-margin{ margin: 0; }
-.mb-20{ margin-bottom: 20px; }
+.no-margin{ margin: 0 !important; }
+
+.mar-top-5{ margin-top: 5px !important; }
+.mar-top-10{ margin-top: 10px !important; }
+.mar-top-20{ margin-top: 20px !important; }
+
+.mar-bottom-5{ margin-bottom: 5px !important; }
+.mar-bottom-10{ margin-bottom: 10px !important; }
+.mar-bottom-20{ margin-bottom: 20px !important; }
+
+.mar-left-5{ margin-left: 5px !important; }
+
+.mar-right-5{ margin-right: 5px !important; }
 
 .middle{
   display: table;
@@ -10,3 +21,10 @@
 .text-left{ text-align: left !important; }
 .text-center{ text-align: center !important; }
 .text-right{ text-align: right !important; }
+
+.upcase{ text-transform: uppercase; }
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}

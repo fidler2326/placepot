@@ -11,6 +11,22 @@
  * file per style scope.
  *
  *= require font-awesome
- *= require_tree .
  *= require_self
  */
+
+@import 'global';
+
+@import 'alerts';
+@import 'buttons';
+@import 'fonts';
+@import 'form';
+@import 'header';
+@import 'helpers';
+@import 'label';
+@import 'layout';
+@import 'nav';
+@import 'notice';
+@import 'table';
+@import 'tabs';
+
+@import 'shame';

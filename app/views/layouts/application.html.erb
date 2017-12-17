@@ -10,13 +10,36 @@
 <body>
   <%= render partial: "layouts/flash_messages", flash: flash %>
   <header class="main">
+    <a href="#" class="menu-trigger"><span></span></a>
     <div class="container">
       <%= link_to 'Placepot', root_path, class: 'logo' %>
+
       <ul>
         <% if current_user %>
-          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link', class: 'button ghost white') %></li>
+          <!-- <div class="profile">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            <span class="label" style="align-self: flex-start;"><%= current_user.username %></span>
+          </div> -->
+        <% end %>
+
+        <% if current_meeting %>
+          <li><%= link_to 'Today', dashboard_path %></li>
+          <li><%= link_to 'Results', edit_meeting_path(current_meeting.first.id) %></li>
+        <% end %>
+
+        <li><%= link_to 'Create Placepot', new_league_path %></li>
+        <li><%= link_to 'Join Placepot', join_path %></li>
+
+        <li><%= link_to 'My Leagues', leagues_path %></li>
+
+        <% if current_user.admin %>
+          <li><%= link_to 'Admin', admins_path %></li>
+        <% end %>
+
+        <% if current_user %>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'nav-link') %></li>
         <% else %>
-          <li><%= link_to 'Login', new_user_session_path, class: 'button ghost white' %></li>
+          <li><%= link_to 'Login', new_user_session_path %></li>
         <% end %>
       </ul>
     </div>
@@ -26,7 +49,7 @@
     <%= yield %>
 
     <% if current_user %>
-      <nav class="main">
+      <!-- <nav class="main">
         <div class="container">
           <ul>
             <% if current_meeting %>
@@ -40,7 +63,7 @@
             <% end %>
           </ul>
         </div>
-      </nav>
+      </nav> -->
     <% end %>
   </div>
 </body>

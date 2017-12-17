@@ -36,6 +36,12 @@ class MeetingsController < ApplicationController
     render 'dashboard/index'
   end
 
+  def reset_meetings
+    Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day).destroy_all
+    League.where("created_at >= ?", Time.zone.now.beginning_of_day).destroy_all
+    render 'dashboard/index'
+  end
+
   def index
     @users = User.all
     @meetings = Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day)

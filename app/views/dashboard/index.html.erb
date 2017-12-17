@@ -7,11 +7,10 @@
 <% end %>
 
 <div class="well">
-  <% unless current_league.nil? %>
+  <% if current_user && !current_league.empty? %>
     <div class="page-heading">
       <h2>
         Today's Placepot
-        <!-- <small>Steward: <%= User.find(current_league.first.steward).username %></small> -->
       </h2>
     </div>
 

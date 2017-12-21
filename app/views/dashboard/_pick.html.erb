@@ -14,10 +14,10 @@
             <div class="number"><%= i +1 %></div>
             <div style="width: 100%;">
               <p>
-                <span class="horse-name"><%= horse.name %></span>
-                <% if horse.result %>
-                  <span class="label result-<%= horse.result %>"><%= horse.result.capitalize %> - <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
-                <% end %><br />
+                <% if horse.result && (horse.points(horse.result) > 0 rescue nil) %>
+                  <span class="label pull-right result-<%= horse.result %>"><%= horse.result.capitalize %></span>
+                <% end %>
+                <span class="horse-name"><%= horse.name %></span><br />
                 <%= "Form #{horse.form}" if horse.form %> <%= "T: #{horse.trainer}" if horse.trainer %> <%= "J: #{horse.jockey}" if horse.jockey %>
               </p>
               <%= "<span class='divide'></span>".html_safe if horse.likes.length > 0 %>

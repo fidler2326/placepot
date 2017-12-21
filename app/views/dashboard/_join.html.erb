@@ -1,0 +1,17 @@
+<div class="page-heading">
+  <h2>Join League</h2>
+</div>
+
+<div class="notice">
+  <h2>League Join Code</h2>
+  <p>Give this code to people you want to join your league.</p>
+  <p class="large"><span class="label"><%= current_league.first.join_code %></span></p>
+</div>
+
+<div class="or-divide"></div>
+
+<h2 class="middle">Scan the code below.</h2>
+
+<div class="middle" id="qr_code">
+  <%= raw @qr %>
+</div>

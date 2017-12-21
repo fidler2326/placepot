@@ -3,6 +3,7 @@
     <li><a href="#pick" class="selected">Today</a></li>
     <li><a href="#selections" class="fetch" data-url="/dashboard/fetch_selections">My Picks</a></li>
     <li><a href="#league" class="fetch" data-url="/dashboard/fetch_league">League</a></li>
+    <li><a href="#join" class="fetch" data-url="/dashboard/fetch_league">Join</a></li>
   </ul>
 <% end %>
 
@@ -28,14 +29,6 @@
           <i class="fa fa-eercast" aria-hidden="true"></i>
           <h3>League</h3>
           <p><%= current_league.first.name %></p>
-        </div>
-      </div>
-
-      <div class="tile">
-        <div class="inner">
-          <i class="fa fa-eercast" aria-hidden="true"></i>
-          <h3>Join Code</h3>
-          <p><%= current_league.first.join_code %></p>
         </div>
       </div>
     </div>
@@ -70,6 +63,11 @@
         <%= render 'league_table' %>
       </div>
 
+      <!-- Join -->
+      <div class="tab" id="join">
+        <%= render 'join' %>
+      </div>
+
     <% end %>
   <% end %>
 </div>
@@ -90,7 +88,6 @@
     $.ajax({
       type: "GET",
       url: $(this).data("url"),
-      // data: ,
       dataType: "script"
     });
     return false;

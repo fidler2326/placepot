@@ -1,10 +1,3 @@
-<!-- Join code -->
-<!-- <div class="notice">
-  <h2>League Join Code</h2>
-  <p>Give this code to people you want to join your league.</p>
-  <p class="large"><span class="label"><%= current_league.first.join_code %></span></p>
-</div> -->
-
 <span class="label mar-bottom-10">Results last updated at: <%= current_meeting.first.updated_at.to_s(:time) rescue nil %></span>
 
 <% current_meeting.each do |meeting| %>
@@ -21,7 +14,7 @@
             <div class="number"><%= i +1 %></div>
             <div style="width: 100%;">
               <p>
-                <span class="upcase"><%= horse.name %></span>
+                <span class="horse-name"><%= horse.name %></span>
                 <% if horse.result %>
                   <span class="label result-<%= horse.result %>"><%= horse.result.capitalize %> - <%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
                 <% end %><br />

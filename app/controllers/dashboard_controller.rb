@@ -1,8 +1,13 @@
+require 'rqrcode'
+
 class DashboardController < ApplicationController
   def index
     @league_members = current_league.first.users rescue nil
     @user = current_user
     @users_results = current_user.horses.map(&:result) rescue nil
+
+    qrcode = RQRCode::QRCode.new("https://placepot.herokuapp.com")
+    @qr = qrcode.as_svg(offset: 0, color: '000', shape_rendering: 'crispEdges', module_size: 8)
   end
 
   def fetch_league

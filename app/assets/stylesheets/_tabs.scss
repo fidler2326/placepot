@@ -1,20 +1,3 @@
-/*doc
----
-title: tabs
-name: tabs
-category: Basics
----
-
-Basic tabs styles ideally used with just 2 links, but it will work with more if needed. To align in the middle use the `.middle` class and to highlight the selected link use the `.selected` class on the `<a>` tag.
-
-```html_example
-<ul class="switch">
-  <li><a href="" class="selected">Placepot</a></li>
-  <li><a href="">League</a></li>
-</ul>
-```
-*/
-
 .switch{
   display: flex;
   list-style: none;
@@ -32,6 +15,9 @@ Basic tabs styles ideally used with just 2 links, but it will work with more if 
       border-right: 1px solid #ddd;
       color: #000;
       text-decoration: none;
+      @media(max-width: $mobile){
+        padding: 8px 12px;
+      }
       &.selected{
         background-color: $green;
         color: #fff;

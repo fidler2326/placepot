@@ -6,8 +6,10 @@ header.main{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
     height: 60px;
     padding: 0 10px;
+    position: relative;
   }
   ul{
     display: flex;
@@ -53,9 +55,22 @@ header.main{
 }
 
 .logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 20px;
+  background-color: darken($green,5%);
   color: #fff;
-  font-size: 22px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 32px;
+  line-height: 30px;
   text-decoration: none;
+  position: absolute;
+  top: 0; left: 0;
+  @media(max-width: $mobile){
+    padding: 0 10px;
+  }
 }
 
 // Profile
@@ -80,25 +95,41 @@ header.main{
   width: 30px; height: 24px;
   position: absolute;
   top: 50%; right: 20px;
+  z-index: 9;
   transform: translate(0,-50%);
   @media(min-width: $mobile){
     display: none;
   }
   span{
     width: 100%;
-    height: 4px;
+    height: 3px;
     background-color: #fff;
     position: absolute;
     top: 50%; left: 0;
-    transform: translate(0,-50%);
+    transform: translate(0,-50%) rotate(0);
+    transition: 0.3s ease;
     &:before,&:after{
       content: '';
-      width: 100%; height: 4px;
+      width: 100%; height: 3px;
       background-color: #fff;
       position: absolute;
       left: 0;
+      transition: 0.3s ease;
     }
-    &:before{ top: -10px; }
-    &:after{ bottom: -10px; }
+    &:before{ transform: translate(0,10px) rotate(0); }
+    &:after{ transform: translate(0,-10px) rotate(0); }
+  }
+  // Active
+  &.active{
+    span{
+      background-color: transparent;
+      transform: rotate(-90deg);
+      &:before{
+        transform: translate(0,0) rotate(45deg);
+      }
+      &:after{
+        transform: translate(0,0) rotate(-45deg);
+      }
+    }
   }
 }

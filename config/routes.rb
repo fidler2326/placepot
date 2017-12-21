@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'dashboard#index'
+  
+  authenticated :user do
+    root :to => 'dashboard#index', as: :authenticated_root
+  end
+  root :to => 'home#index'
+
   resources :racecards
   resources :leagues
   resources :likes

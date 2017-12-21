@@ -11,13 +11,12 @@ category: Buttons
 
 .button{
   display: inline-block;
-  padding: 8px 20px;
+  padding: 10px 20px;
   background-color: $yellow;
   border: 0;
   border-radius: 5px;
-  font-size: 15px;
   color: #494634;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
   cursor: pointer;
   &:hover{

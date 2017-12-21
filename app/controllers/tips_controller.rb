@@ -1,5 +1,6 @@
 class TipsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def new
     @tip = Tip.new
 

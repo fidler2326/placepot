@@ -1,4 +1,6 @@
 class RacecardsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @racecard = Racecard.new
     @meetings = Meeting.all

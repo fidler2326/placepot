@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+  before_action :authenticate_user!
   helper_method :get_meetings
 
   def get_meetings

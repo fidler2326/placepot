@@ -5,7 +5,7 @@
     <div class="race-row">
       <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
       <div class="race-header">
-        <h2 class="no-margin upcase">Race <%= i +1 %></h2>
+        <h2 class="race-number">Race <%= i +1 %></h2>
         <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= race.time.to_s(:time) %></p>
       </div>
       <% race.horses.each_with_index do |horse, i| %>

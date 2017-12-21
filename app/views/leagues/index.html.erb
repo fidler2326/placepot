@@ -12,7 +12,10 @@
       </tr>
       <% current_user.leagues.each do |league| %>
         <tr>
-          <td><%= league.name %></td>
+          <td>
+            <%= league.name %><br />
+            <%= Meeting.find(league.meeting).racecourse %>
+          </td>
           <td><%= league.created_at.strftime("%d/%m/%Y") %></td>
           <td class="text-right"><%= link_to "View League", league_path(league) %></td>
         </tr>

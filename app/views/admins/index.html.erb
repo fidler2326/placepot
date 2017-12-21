@@ -5,6 +5,7 @@
   </div>
 
   <div class="flex-row mar-bottom-20">
+    <%= link_to 'Meetings', meetings_path, class: 'button mar-right-5' %>
     <%= link_to 'Get Meetings', get_meetings_path, class: 'button mar-right-5' %>
     <%= link_to 'Reset Today', reset_meetings_path, class: 'button' %>
   </div>
@@ -13,18 +14,34 @@
     <tr>
       <th>Username</th>
       <th>Email address</th>
-      <th>Leagues</th>
-      <th>Joined</th>
-      <th>Last login</th>
+      <!-- <th>Leagues</th> -->
+      <th>Admin?</th>
+      <!-- <th>Joined</th>
+      <th>Last login</th> -->
     </tr>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
-        <td><%= user.leagues.count %></td>
-        <td><%= user.created_at.to_formatted_s(:long) %></td>
-        <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
+        <!-- <td><%= user.leagues.count %></td> -->
+        <td><input type="checkbox" class="toggle-admin" data-id="<%= user.id %>" <%= 'checked' if user.admin %> /></td>
+        <!-- <td><%= user.created_at.to_formatted_s(:long) %></td>
+        <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td> -->
       </tr>
     <% end %>
   </table>
 </div>
+
+<script>
+  $(".toggle-admin").change(function() {
+    console.log("Yo");
+    var user_id = $(this).data("id");
+    $.ajax({
+      type: "POST",
+      url: 'admins/toggle_admin',
+      data: { "user_id": user_id },
+      dataType: "json"
+    });
+    return false;
+  });
+</script>

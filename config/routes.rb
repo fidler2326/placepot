@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   authenticated :user do
     root :to => 'dashboard#index', as: :authenticated_root
   end
@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#index'
   get '/dashboard/fetch_selections' => 'dashboard#fetch_selections'
   get '/dashboard/fetch_league' => 'dashboard#fetch_league'
+
+  post '/admins/toggle_admin' => 'admins#toggle_admin'
 
   resources :admins, only: :index
   get '/get_meetings' => 'meetings#get_meetings', :as => 'get_meetings'

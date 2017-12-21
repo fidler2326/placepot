@@ -1,12 +1,18 @@
-<table class="table-outlined">
-  <tr>
-    <th>Meeting</th>
-    <th></th>
-  </tr>
-  <% @meetings.each do |meeting| %>
+<div class="well">
+  <div class="page-heading">
+    <h2>Meetings</h2>
+  </div>
+  
+  <table class="table-outlined">
     <tr>
-      <td><%= meeting.racecourse %></td>
-      <td><%= link_to "Edit Results", edit_meeting_path(meeting) %></td>
+      <th>Meeting</th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
+    <% @meetings.each do |meeting| %>
+      <tr>
+        <td><%= meeting.racecourse %></td>
+        <td class="text-right"><%= link_to "Edit Results", edit_meeting_path(meeting) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

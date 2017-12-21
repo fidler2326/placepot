@@ -1,33 +1,31 @@
-<div class="in">
+<div class="well">
   <%= simple_form_for @meeting do |f| %>
-    <div class="page-title">
-      <h1>
+    <div class="page-heading">
+      <h2>
         <%= current_meeting.first.racecourse %>
-        <small><%= current_meeting.first.created_at %></small>
-      </h1>
+        <small><%= current_meeting.first.created_at.strftime("%d/%m/%Y") %></small>
+      </h2>
     </div>
 
-    <section>
-      <ul class="tabs">
+    <div class="scroll-container mar-bottom-10">
+      <ul class="switch no-margin">
         <% current_meeting.first.races.each.with_index do |race, index| %>
-          <li><a href="#tab-<%= index %>" class="<%= "active" if index == 0 %>"><%= race.time.to_s(:time) %></a></li>
+          <li class="border"><a href="#tab-<%= index %>" class="<%= "selected" if index == 0 %>">R<%= index +1 %> | <%= race.time.to_s(:time) %></a></li>
         <% end %>
+        <!-- <li class="border"><%= link_to_add_association 'Add Race <i class="fa fa-plus" aria-hidden="true"></i>'.html_safe, f, :races, class: 'btn-add' %></li> -->
       </ul>
+    </div>
 
-      <div class="well">
-        <div id="races">
-          <table class="basic">
-            <%= f.simple_fields_for :races do |tip| %>
-              <%= render 'race_fields', f: tip %>
-            <% end %>
-          </table>
-        </div>
+    <div id="races">
+      <table class="basic">
+        <%= f.simple_fields_for :races do |tip| %>
+          <%= render 'race_fields', f: tip %>
+        <% end %>
+      </table>
+    </div>
 
-        <div class="links">
-          <%= link_to_add_association 'Add Race', f, :races, class: 'btn-add' %>
-        </div>
-        <%= f.submit class: 'btn-fixed-bottom' %>
-      </div>
-    </section>
+    <div class="form-actions">
+      <%= f.submit class: 'button' %>
+    </div>
   <% end %>
 </div>

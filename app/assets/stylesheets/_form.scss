@@ -34,7 +34,32 @@
     border: 1px solid #ddd;
     font-size: 14px;
   }
-  select{ height: 37px; }
+  select{ height: 39px; }
+}
+
+.input.time{
+  display: flex;
+  align-items: center;
+  select:first-of-type{ margin-right: 5px; }
+  select:last-of-type{ margin-left: 5px; }
+}
+
+.results-fields{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  .input{
+    width: 44%;
+  }
+  .button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 39px;
+    position: relative;
+    top: 4px;
+  }
 }
 
 .form-actions{

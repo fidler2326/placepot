@@ -22,6 +22,9 @@ category: Buttons
   &:hover{
     // TODO: Hover state
   }
+  &.small{
+    padding: 5px 10px;
+  }
   &.ghost{
     background-color: initial;
     border: 2px olid $green;
@@ -38,6 +41,10 @@ category: Buttons
         color: $green;
       }
     }
+  }
+  &.danger{
+    color: #fff;
+    background-color: $red;
   }
   &.button-full{
     width: 100%;

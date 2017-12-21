@@ -11,23 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213192516) do
+ActiveRecord::Schema.define(version: 20171221195647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "horses", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "race_id"
     t.string   "name"
     t.integer  "meeting_id"
     t.integer  "tip_id"
-    t.boolean  "horse_options", default: [],              array: true
+    t.boolean  "horse_options",  default: [],              array: true
     t.string   "result"
     t.string   "form"
     t.string   "trainer"
     t.string   "jockey"
+    t.string   "program_number"
   end
 
   create_table "leagues", force: :cascade do |t|

@@ -23,11 +23,12 @@ class MeetingsController < ApplicationController
           Race.create!(meeting_id: Meeting.last.id, time: time)
           horses = race.css('.RC-runnerRow')
           horses.each do |horse|
+            program_number = horse.css('.RC-runnerNumber__no').text.strip
             name = horse.css('.RC-runnerName').text.strip
             form = horse.css('.RC-runnerInfo__form').text.strip
             trainer = horse.css('.RC-runnerInfo_trainer .RC-runnerInfo__name').text.strip
             jockey = horse.css('.RC-runnerInfo_jockey .RC-runnerInfo__name').text.strip
-            Horse.create!(race_id: Race.last.id, meeting_id: Meeting.last.id, name: name, form: form, trainer: trainer, jockey: jockey)
+            Horse.create!(race_id: Race.last.id, meeting_id: Meeting.last.id, program_number: program_number, name: name, form: form, trainer: trainer, jockey: jockey)
           end
         end
       end

@@ -15,32 +15,18 @@
         <small><%= Meeting.find(current_league.first.meeting).racecourse %> - <%= Meeting.find(current_league.first.meeting).created_at.strftime("%d/%m/%Y") %></small>
       </h2>
     </div>
-
-    <!-- <div class="tile-container">
-      <div class="tile">
-        <div class="inner">
-          <i class="fa fa-eercast" aria-hidden="true"></i>
-          <h3>Course</h3>
-          <p><%= Meeting.find(current_league.first.meeting).racecourse %></p>
-        </div>
-      </div>
-
-      <div class="tile">
-        <div class="inner">
-          <i class="fa fa-eercast" aria-hidden="true"></i>
-          <h3>League</h3>
-          <p><%= current_league.first.name %></p>
-        </div>
-      </div>
-    </div> -->
   <% end %>
 
   <% if current_meeting.nil? %>
-    
+  <div class="notice no-margin">
+    <p>Not part of any placepots yet. Create a placepot or join an existing one.</p>
+    <p>
+      <%= link_to 'Create Placepot', new_league_path, class: 'button' %>
+      <%= link_to 'Join Placepot', join_path, class: 'button' %>
+    </p>
+  </div>
   <% else %>
-
     <% unless current_meeting.nil? %>
-
       <!-- Picks -->
       <div class="tab active" id="pick">
         <div id="picks">
@@ -62,7 +48,6 @@
       <div class="tab" id="join">
         <%= render 'join' %>
       </div>
-
     <% end %>
   <% end %>
 </div>

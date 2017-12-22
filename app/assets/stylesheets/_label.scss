@@ -7,8 +7,11 @@
   &.result-1st{
     background-color: $green;
   }
-  &.result-2nd,&.result-3rd{
+  &.result-2nd{
     background-color: $yellow;
+  }
+  &.result-3rd{
+    background-color: $red;
   }
 }
 

@@ -20,7 +20,8 @@ class MeetingsController < ApplicationController
 
         races.each do |race|
           time = race.css('.RC-meetingDay__raceTime').text.strip
-          Race.create!(meeting_id: Meeting.last.id, time: time.to_datetime)
+          Race.create!(meeting_id: Meeting.last.id, time: (time.to_datetime + 12.hours if time.to_datetime > Time.now.midnight && time.to_datetime < Time.now.midnight + 10.hours) || time.to_datetime)
+
           horses = race.css('.RC-runnerRow')
           horses.each do |horse|
             program_number = horse.css('.RC-runnerNumber__no').text.strip
@@ -55,7 +56,7 @@ class MeetingsController < ApplicationController
 
   def update
     @meeting = Meeting.find(params[:id])
-
+    @meeting.touch
     if @meeting.update(meeting_params)
       redirect_to action: "index"
     else

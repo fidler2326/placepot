@@ -5,8 +5,11 @@
     <div class="race-row">
       <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
       <div class="race-header">
+        <% if race.time.past? %>
+          <span class="label upcase pull-right">Race Off</span>
+        <% end %>
         <h2 class="race-number">Race <%= i +1 %></h2>
-        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= race.time.to_s(:time) %></p>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= race.time.strftime("%H:%M") %></p>
       </div>
       <% race.horses.order('created_at').each_with_index do |horse, i| %>
         <div class="horse-row">
@@ -30,7 +33,7 @@
           <div class="select">
             <% unless current_user.horses.include?(horse) %>
               <%= form_tag likes_path, class: 'like-form' do %>
-                <%= button_tag "", :class => "btn-pick", id: 'like', disabled: has_horse do %>
+                <%= button_tag "", :class => "btn-pick", id: 'like', disabled: has_horse || race.time.past? do %>
                   <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                 <% end %>
                 <%= hidden_field_tag 'horse_id', horse.id %>

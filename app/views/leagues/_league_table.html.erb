@@ -4,10 +4,10 @@
     <th>User</th>
     <th>Points</th>
   </tr>
-  <% current_league.first.memberships.sort_by{|i| i.user.total_points(i.user.horses.where(meeting_id: current_league.first.meeting).map(&:result))}.reverse.each_with_index do |member,i| %>
+  <% @league.memberships.sort_by{|i| i.user.total_points(i.user.horses.where(meeting_id: @league.meeting).map(&:result))}.reverse.each_with_index do |member,i| %>
     <tr>
       <td style="width: 50px; text-align: center;"><%= i +1 %></td>
-      <% user_results = member.user.horses.where(meeting_id: current_league.first.meeting).map(&:result) %>
+      <% user_results = member.user.horses.where(meeting_id: @league.meeting).map(&:result) %>
       <td><%= member.user.username %></td>
       <td><%= pluralize(member.user.total_points(user_results), 'point') %></td>
     </tr>

@@ -1,6 +1,6 @@
 <% unless current_meeting.nil? %>
   <ul class="switch middle">
-    <li><a href="#pick" class="selected">Card</a></li>
+    <li><a href="#card" class="selected">Card</a></li>
     <li><a href="#selections" class="fetch" data-url="/dashboard/fetch_selections">My Picks</a></li>
     <li><a href="#league" class="fetch" data-url="/dashboard/fetch_league">League</a></li>
     <li><a href="#join" class="fetch" data-url="/dashboard/fetch_league">Join</a></li>
@@ -30,7 +30,7 @@
       <!-- Picks -->
       <div class="tab active" id="pick">
         <div id="picks">
-          <%= render 'pick' %>
+          <%= render 'card' %>
         </div>
       </div>
 

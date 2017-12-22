@@ -40,6 +40,7 @@
 .input.time{
   display: flex;
   align-items: center;
+  max-width: 200px;
   select:first-of-type{ margin-right: 5px; }
   select:last-of-type{ margin-left: 5px; }
 }

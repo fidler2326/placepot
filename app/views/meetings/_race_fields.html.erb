@@ -1,6 +1,8 @@
 <div class="nested-fields tab <% if f.index == 0 %>active<% end %>" id="tab-<%= f.index %>">
   <div class="flex-row space-between mar-bottom-10">
-    <%= f.input :time, label: false %>
+    <div class="input time">
+      <%= f.time_select :time, label: false %>
+    </div>
     <%= link_to_remove_association "Remove Race", f, class: 'button danger', style: 'align-self: flex-start;' %>
   </div>
   <div class="tips">

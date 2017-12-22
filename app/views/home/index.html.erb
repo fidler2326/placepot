@@ -27,7 +27,7 @@
       <% @todays_meetings.each do |meeting| %>
         <tr>
           <td><%= meeting.racecourse %></td>
-          <td class="text-right"><a href="#">Create League</a></td>
+          <td class="text-right"><%= link_to "Create League", new_league_path, class: "button" %></td>
         </tr>
       <% end %>
     </table>

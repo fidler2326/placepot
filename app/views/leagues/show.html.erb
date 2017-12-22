@@ -1,47 +1,39 @@
+<div class="well">
+  <div class="page-heading">
+    <h2>
+      <%= @league.name %>
+      <small><%= @meeting.racecourse %> - <%= @meeting.created_at.strftime("%d/%m/%Y") %></small>
+    </h2>
+  </div>
 
-
-<div id="picks">
-  <% @meeting.each do |meeting| %>
-    <%= meeting.racecourse %><br />
-    <% meeting.races.each do |race| %>
+  <% @meeting.races.each_with_index do |race,i| %>
+    <div class="race-row">
       <% has_horse = race.horses.map(&:likes).flatten.map(&:user_id).include?(current_user.id) %>
-      <%= race.time.to_s(:time) %><br />
-      <% race.horses.each_with_index do |horse, i| %>
-        <!-- if current_user has a horse with race.id that matches the current race.id in loop -->
-
-        <%# horse.likes.where(user: current_user).inspect %>
-        <% unless current_user.horses.include?(horse) %>
-          <!-- # Prob want to move this into a User instance method -->
-          <!-- # Create a like form if the user does not have a like for this horse -->
-          <div class="horse-row">
-            <%= form_tag likes_path, class: 'like-form' do %>
-              <!-- # Clicking this sends a request: POST /likes with params of: horse_id=123 -->
-              <%= i +1 %> - <%= horse.name %><br />
-              Form: <%= horse.form %> T: <%= horse.trainer %> J: <%= horse.jockey %>
-              <% unless has_horse %>
-                <%= submit_tag "Like this horse", :class => "like_button", id: 'like' %>
-              <% end %>
-              <%= hidden_field_tag 'horse_id', horse.id %>
-            <% end %>
-          </div>
-        <% else %>
-          <!-- # Find the like. I'll admit there is probably a better way to do this but it's getting past my bed time. -->
-          <% like = horse.likes.where(:user_id => current_user.id).first %>
-          <!-- # Destroy the like associated with this horse and user -->
-          <div class="unlike_button horse-row">
-            <%= form_tag like_path(like), class: 'like-form', method: :delete do %>
-              <!-- # Clicking this sends a request to: DELETE /likes/123 -->
-              <p><%= i +1 %> - <%= horse.name %> <%# link_to "destroy like", like_path(like), method: :delete %><%= submit_tag "Unlike this horse", id: 'like' %></p>
+      <div class="race-header">
+        <h2 class="race-number">Race <%= i +1 %></h2>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= race.time.strftime("%H:%M") %></p>
+      </div>
+      <% race.horses.order('created_at').each_with_index do |horse, i| %>
+        <div class="horse-row">
+          <div class="horse">
+            <div class="number"><%= horse.program_number %></div>
+            <div style="width: 100%;">
+              <p>
+                <% if horse.result && (horse.points(horse.result) > 0 rescue nil) %>
+                  <span class="label pull-right result-<%= horse.result %>"><%= horse.result.capitalize %></span>
+                <% end %>
+                <span class="horse-name"><%= horse.name %></span><br />
+                <%= "Form #{horse.form}" if horse.form %> <%= "T: #{horse.trainer}" if horse.trainer %> <%= "J: #{horse.jockey}" if horse.jockey %>
+              </p>
+              <%= "<span class='divide'></span>".html_safe if horse.likes.length > 0 %>
               <% horse.likes.each do |like| %>
-                <%# like.horse.race.id == race.id %>
-                <span class="label"><%= like.user.email rescue nil %></span> <span class="label"><%= like.user.username rescue nil %></span>
+                <span class="label"><%= User.find(like.user_id).username rescue nil %></span>
               <% end %>
-              <%= hidden_field_tag 'horse_id', horse.id %>
-            <% end %>
+            </div>
           </div>
-        <% end %>
-        <span style="color: red;"><%= pluralize(horse.points(horse.result), 'point') if horse.points(horse.result) %></span>
+        </div>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
+
 </div>

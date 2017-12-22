@@ -61,7 +61,7 @@ header.main{
   justify-content: center;
   height: 100%;
   padding: 0 15px;
-  background-color: darken($green,5%);
+  background-color: darken($green,2%);
   color: #fff;
   font-family: 'Raleway', sans-serif;
   font-size: 22px;
@@ -96,7 +96,7 @@ header.main{
   width: 30px; height: 24px;
   position: absolute;
   top: 50%; right: 20px;
-  z-index: 9;
+  z-index: 8;
   transform: translate(0,-50%);
   @media(min-width: $mobile){
     display: none;

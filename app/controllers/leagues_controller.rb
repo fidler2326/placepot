@@ -27,7 +27,7 @@ class LeaguesController < ApplicationController
 
   def show
     @league = League.find(params[:id])
-    @meeting = Meeting.where(id: @league.meeting)
+    @meeting = Meeting.where(id: @league.meeting).first
     @todays_meetings = Meeting.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
 

@@ -58,7 +58,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @meeting.touch
     if @meeting.update(meeting_params)
-      redirect_to action: "index"
+      redirect_to root_path
     else
       render 'edit'
     end

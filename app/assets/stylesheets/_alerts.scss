@@ -1,33 +1,14 @@
-/*doc
----
-title: Alert
-name: Alert
-category: Basics
----
-
-Button styles can be applied to any element. Typically you'll want
-to use either a `<button>` or an `<a>` element:
-
-```html_example
-<div class="alert-container">
-  <div class="alert">
-    <div class="inner">
-      <span>Example alert</span>
-      <button class="js-alert-close">x</button>
-    </div>
-  </div>
-</div>
-```
-*/
-
 .alert-container{
   perspective: 800px;
+  position: relative;
+  z-index: 9;
   .alert{
     display: flex;
     align-items: center;
     width: 100%; min-height: 60px;
     padding: 15px;
-    background-color: #fade3f;
+    background-color: $yellow;
+    border-radius: 0;
     position: fixed;
     top: 0; left: 50%;
     transform-style: preserve-3d;
@@ -35,7 +16,27 @@ to use either a `<button>` or an `<a>` element:
     transform: translateX(-50%);
     &.active{ animation: alertIn 1s forwards; }
     &.close{ animation: alertOut 1s forwards; }
-    .inner{ padding: 0 10px; }
+    .inner{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%; max-width: 860px;
+      padding: 0 10px;
+      @media(max-width: $mobile){
+        padding: 0;
+      }
+    }
+    button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; height: 30px;
+      background-color: darken($yellow,12%);
+      border: 0; outline: 0;
+      border-radius: 100%;
+      font-size: 14px;
+      cursor: pointer;
+    }
   }
 }
 
